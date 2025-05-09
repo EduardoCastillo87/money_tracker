@@ -16,6 +16,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(children: [homeHeader(), Transactions_list()]),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.teal,
         onPressed: () {
           // Show a bottom sheed to add transaction
           showModalBottomSheet(
@@ -26,7 +27,7 @@ class HomeScreen extends StatelessWidget {
             },
           );
         },
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add, color: Colors.white),
       ),
     );
   }

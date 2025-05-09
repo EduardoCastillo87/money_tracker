@@ -72,16 +72,21 @@ class _AddTransactionDialogState extends State<AddTransactionDialog> {
             style: textTheme.bodySmall!.copyWith(color: Colors.teal),
           ),
           TextField(
-            inputFormatters: [
-              CurrencyTextInputFormatter.currency(symbol: '\$'),
-            ],
             textAlign: TextAlign.center,
             decoration: InputDecoration.collapsed(
               hintText: 'Enter a description here',
               hintStyle: TextStyle(color: Colors.grey),
             ),
             keyboardType: TextInputType.text,
-            autofocus: true,
+          ),
+          const SizedBox(width: 20),
+          SizedBox(
+            width: 250,
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
+              child: const Text('Add', style: TextStyle(color: Colors.white)),
+            ),
           ),
         ],
       ),
