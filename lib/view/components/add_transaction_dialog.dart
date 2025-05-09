@@ -17,7 +17,7 @@ class _AddTransactionDialogState extends State<AddTransactionDialog> {
     final textTheme = Theme.of(context).textTheme;
 
     return SizedBox(
-      height: 680,
+      height: 750,
       width: double.infinity,
       child: Column(
         children: [
@@ -59,8 +59,29 @@ class _AddTransactionDialogState extends State<AddTransactionDialog> {
               CurrencyTextInputFormatter.currency(symbol: '\$'),
             ],
             textAlign: TextAlign.center,
-            decoration: InputDecoration.collapsed(hintText: '\$ 0.00'),
+            decoration: const InputDecoration.collapsed(
+              hintText: '\$ 0.00',
+              hintStyle: TextStyle(color: Colors.grey),
+            ),
             keyboardType: TextInputType.number,
+            autofocus: true,
+          ),
+          SizedBox(height: 20),
+          Text(
+            'DESCRIPTION',
+            style: textTheme.bodySmall!.copyWith(color: Colors.teal),
+          ),
+          TextField(
+            inputFormatters: [
+              CurrencyTextInputFormatter.currency(symbol: '\$'),
+            ],
+            textAlign: TextAlign.center,
+            decoration: InputDecoration.collapsed(
+              hintText: 'Enter a description here',
+              hintStyle: TextStyle(color: Colors.grey),
+            ),
+            keyboardType: TextInputType.text,
+            autofocus: true,
           ),
         ],
       ),
