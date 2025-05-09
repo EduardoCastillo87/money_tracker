@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moneytracker/view/components/add_transaction_dialog.dart';
 import 'package:moneytracker/view/components/home_Header.dart';
 import 'package:moneytracker/view/components/transaction_list.dart'
     show Transactions_list;
@@ -20,7 +21,7 @@ class HomeScreen extends StatelessWidget {
           showModalBottomSheet(
             context: context,
             builder: (context) {
-              return Container();
+              return AddTransactionDialog();
             },
           );
         },
