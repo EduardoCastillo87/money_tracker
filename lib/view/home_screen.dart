@@ -15,7 +15,15 @@ class HomeScreen extends StatelessWidget {
         child: Column(children: [homeHeader(), Transactions_list()]),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          // Show a bottom sheed to add transaction
+          showModalBottomSheet(
+            context: context,
+            builder: (context) {
+              return Container();
+            },
+          );
+        },
         child: const Icon(Icons.add),
       ),
     );
