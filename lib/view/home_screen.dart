@@ -20,6 +20,7 @@ class HomeScreen extends StatelessWidget {
           // Show a bottom sheed to add transaction
           showModalBottomSheet(
             context: context,
+            isScrollControlled: true,
             builder: (context) {
               return AddTransactionDialog();
             },
