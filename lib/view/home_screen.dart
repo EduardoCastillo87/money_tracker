@@ -14,6 +14,10 @@ class HomeScreen extends StatelessWidget {
         bottom: false,
         child: Column(children: [homeHeader(), Transactions_list()]),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }

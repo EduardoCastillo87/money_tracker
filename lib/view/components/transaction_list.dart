@@ -13,14 +13,20 @@ class Transactions_list extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.attach_money, color: Colors.teal),
               title: const Text('Income'),
-              subtitle: const Text('You got \$ 1,000.00'),
-              trailing: const Text('\$ 1,000.00'),
+              subtitle: const Text('Salary'),
+              trailing: const Text(
+                '\$ 1,000.00',
+                style: TextStyle(fontSize: 14),
+              ),
             ),
             ListTile(
               leading: const Icon(Icons.attach_money, color: Colors.red),
               title: const Text('Expense'),
-              subtitle: const Text('You spent \$ 500.00'),
-              trailing: const Text('- \$ 500.00'),
+              subtitle: const Text('Rent'),
+              trailing: const Text(
+                '- \$ 500.00',
+                style: TextStyle(fontSize: 14),
+              ),
             ),
           ],
         ),
