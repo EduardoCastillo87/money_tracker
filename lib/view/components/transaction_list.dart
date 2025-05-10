@@ -1,34 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:moneytracker/controller/transaction_provider.dart';
+import 'package:moneytracker/model/transaction.dart';
+import 'package:provider/provider.dart';
 
 class Transactions_list extends StatelessWidget {
   const Transactions_list({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final transactions =
+        Provider.of<TransactionsProvider>(context).transactions;
+
     return Expanded(
       child: Container(
         decoration: BoxDecoration(color: Colors.white),
-        child: ListView(
-          children: [
-            ListTile(
-              leading: const Icon(Icons.attach_money, color: Colors.teal),
-              title: const Text('Income'),
-              subtitle: const Text('Salary'),
-              trailing: const Text(
-                '\$ 1,000.00',
-                style: TextStyle(fontSize: 14),
+        child: ListView.builder(
+          itemCount: transactions.length,
+          itemBuilder: (context, index) {
+            final transaction = transactions[index];
+            final type =
+                transaction.type == TransactionType.income
+                    ? 'Income'
+                    : 'Expense';
+            final value =
+                transaction.type == TransactionType.expense
+                    ? '-\$ ${transaction.amount.abs().toStringAsFixed(2)}'
+                    : '\$ ${transaction.amount.toStringAsFixed(2)}';
+            final color =
+                transaction.type == TransactionType.expense
+                    ? Colors.red
+                    : Colors.teal;
+
+            return ListTile(
+              title: Text(transaction.description),
+              subtitle: Text(type),
+              trailing: Text(
+                value,
+                style: TextStyle(fontSize: 14, color: color),
               ),
-            ),
-            ListTile(
-              leading: const Icon(Icons.attach_money, color: Colors.red),
-              title: const Text('Expense'),
-              subtitle: const Text('Rent'),
-              trailing: const Text(
-                '- \$ 500.00',
-                style: TextStyle(fontSize: 14),
-              ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:moneytracker/controller/transaction_provider.dart';
 import 'package:moneytracker/view/widgets/Header_Card.dart';
+import 'package:provider/provider.dart';
 
 class homeHeader extends StatelessWidget {
   const homeHeader({super.key});
@@ -7,6 +9,11 @@ class homeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextTheme = Theme.of(context).textTheme;
+    final provider = Provider.of<TransactionsProvider>(context);
+    final balance = provider.getBalance();
+    final incomes = provider.getTotalIncomes();
+    final expenses = provider.getTotalExpenses();
+
     return Container(
       width: double.infinity,
       child: Column(
@@ -28,25 +35,25 @@ class homeHeader extends StatelessWidget {
             ),
           ),
           Text(
-            '\$ 1,000.00',
+            '\$ ${balance.toStringAsFixed(2)}',
             style: TextTheme.headlineLarge!.copyWith(
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(20),
-            child: const Row(
+            padding: EdgeInsets.all(20),
+            child: Row(
               children: [
                 HeaderCard(
-                  title: 'Income',
-                  amount: 1000.00,
+                  title: 'Incomes',
+                  amount: incomes,
                   icon: Icon(Icons.attach_money, color: Colors.teal),
                 ),
                 SizedBox(width: 12),
                 HeaderCard(
-                  title: 'Expense',
-                  amount: -500.00,
+                  title: 'Expenses',
+                  amount: expenses,
                   icon: Icon(Icons.money_off, color: Colors.red),
                 ),
               ],

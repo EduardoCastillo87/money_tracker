@@ -1,6 +1,9 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:moneytracker/controller/transaction_provider.dart';
+import 'package:moneytracker/model/transaction.dart';
+import 'package:provider/provider.dart';
 
 class AddTransactionDialog extends StatefulWidget {
   const AddTransactionDialog({super.key});
@@ -11,6 +14,9 @@ class AddTransactionDialog extends StatefulWidget {
 
 class _AddTransactionDialogState extends State<AddTransactionDialog> {
   int? typeIndex = 0;
+  TransactionType type = TransactionType.expense;
+  double amount = 0;
+  String description = '';
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +53,8 @@ class _AddTransactionDialogState extends State<AddTransactionDialog> {
             onValueChanged: (value) {
               setState(() {});
               typeIndex = value;
+              type =
+                  value == 0 ? TransactionType.income : TransactionType.expense;
             },
           ),
           SizedBox(height: 20),
@@ -65,6 +73,16 @@ class _AddTransactionDialogState extends State<AddTransactionDialog> {
             ),
             keyboardType: TextInputType.number,
             autofocus: true,
+            onChanged: (value) {
+              final valueWithouDollarSign = value.replaceAll('\$', '');
+              final valueWithouCommas = valueWithouDollarSign.replaceAll(
+                '\$',
+                '',
+              );
+              if (valueWithouCommas.isNotEmpty) {
+                amount = double.parse(valueWithouCommas);
+              }
+            },
           ),
           SizedBox(height: 20),
           Text(
@@ -78,12 +96,28 @@ class _AddTransactionDialogState extends State<AddTransactionDialog> {
               hintStyle: TextStyle(color: Colors.grey),
             ),
             keyboardType: TextInputType.text,
+            onChanged: (value) {
+              description = value;
+            },
           ),
           const SizedBox(width: 20),
           SizedBox(
             width: 250,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                final transaction = Transaction(
+                  type: type,
+                  amount: amount,
+                  description: description,
+                );
+
+                Provider.of<TransactionsProvider>(
+                  context,
+                  listen: false,
+                ).addTransaction(transaction);
+
+                Navigator.pop(context);
+              },
               style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
               child: const Text('Add', style: TextStyle(color: Colors.white)),
             ),

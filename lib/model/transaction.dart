@@ -1,7 +1,7 @@
 class Transaction {
   final TransactionType type;
-  final String amount;
-  final Stream description;
+  final double amount;
+  final String description;
 
   Transaction({
     required this.type,
