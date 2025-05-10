@@ -107,7 +107,7 @@ class _AddTransactionDialogState extends State<AddTransactionDialog> {
               onPressed: () {
                 final transaction = Transaction(
                   type: type,
-                  amount: amount,
+                  amount: type == TransactionType.expense ? -amount : amount,
                   description: description,
                 );
 
