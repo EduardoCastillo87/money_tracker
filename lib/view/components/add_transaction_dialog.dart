@@ -37,7 +37,7 @@ class _AddTransactionDialogState extends State<AddTransactionDialog> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(30),
             child: Text(
               'New Transaction',
               style: TextStyle(
