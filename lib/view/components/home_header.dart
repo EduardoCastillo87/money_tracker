@@ -14,7 +14,7 @@ class homeHeader extends StatelessWidget {
     final incomes = provider.getTotalIncomes();
     final expenses = provider.getTotalExpenses();
 
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Column(
         children: [
